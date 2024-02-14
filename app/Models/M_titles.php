@@ -10,8 +10,7 @@ class M_titles extends Model
     use HasFactory;
 
     protected $table = 'titles';
-    protected $primarykey = 'tit_id';
-    public $incrementing = 'true';
-    public $timestamps = 'false';
-
+    protected $primaryKey = 'tit_id';
+    public $incrementing = true;
+    public $timestamps = false;
 }

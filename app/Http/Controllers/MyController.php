@@ -21,9 +21,4 @@ class MyController extends Controller
         $data['myinput'] = $req->input('myinput');
         return view('myroute', $data);
     }
-
-    public function multi(Request $req){
-        $data = $req->input('myinput');
-        return redirect('/my-route')->with('multiply',$data);
-    }
 }

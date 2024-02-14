@@ -11,6 +11,8 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ url('assets/plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-..."
+  crossorigin="anonymous">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css') }}">
 </head>
@@ -27,7 +29,7 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
+                    <a href="titles" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -169,7 +171,7 @@
             <a href="index3.html" class="brand-link">
                 <img src="{{ url('assets/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
+                <span class="brand-text font-weight-light">SE #12</span>
             </a>
 
             <!-- Sidebar -->
@@ -177,12 +179,14 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="{{ url('assets/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
+                        <img src="{{ url('assets/dist/img/user3-160x160.jpg') }}" class="img-circle elevation-2"
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                        <a href="#" class="d-block">Tanapat Meechai</a>
                     </div>
+                    <br>
+
                 </div>
 
                 <!-- SidebarSearch Form -->
@@ -236,6 +240,21 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item" id="logout">
+                            <a href="#" class="nav-link" onclick="openPopup()">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <p>Logout</p>
+                            </a>
+                        </li>
+
+                        <style>
+                            #logout{
+                                position: fixed; /* ตั้งปุ่มจุดกลาง */
+                                bottom: 0; /* กำหนดให้ตำแหน่งที่ตำแหน่งท้ายสุด (ล่างสุด) */
+                                text-align: center; /* จัดตำแหน่งข้อความกลาง */
+                            }
+                        </style>
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -245,7 +264,85 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
+
+
+            <div id="confirmationPopup" style="display: none;" class="popup">
+                <p> <b>คุณแน่ใจหรือไม่ที่ต้องการออกจากระบบ ?</b></p>
+                <div class="button-container">
+                    <button class="submid" onclick="confirmAction()">ยืนยัน</button>
+                    <button class="cancel" onclick="closePopup()">ยกเลิก</button>
+                </div>
+            </div>
+
+            <script>
+                function openPopup() {
+                    document.getElementById('confirmationPopup').style.display = 'block';
+                }
+
+                function closePopup() {
+                    document.getElementById('confirmationPopup').style.display = 'none';
+                }
+
+                function confirmAction() {
+                    // กระทำที่คุณต้องการเมื่อผู้ใช้คลิกยืนยัน
+
+                    window.location.href = '/login';
+
+                    alert('Action Confirmed!');
+                    // ปิดป็อปอัพ
+                    closePopup();
+                }
+            </script>
+
+            <style>
+                /* ตำแหน่งป็อปอัพกลางหน้าจอ */
+                #confirmationPopup {
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    display: none;
+                    background-color: #fff;
+                    padding: 20px;
+                    border: 1px solid #ccc;
+                    z-index: 9999; /* ให้มีลำดับแสดงที่สูงกว่าเนื้อหาหลัก */
+                    text-align: center; /* จัดให้ข้อความและปุ่มอยู่ตรงกลาง */
+                }
+
+                /* ปรับแต่งสไตล์ของป็อปอัพตามต้องการ */
+                #confirmationPopup p {
+                    margin-bottom: 10px;
+                }
+
+                .button-container {
+                    margin-top: 20px;
+                }
+
+                #confirmationPopup button {
+                    color: #fff;
+                    padding: 8px 15px;
+                    border: black;
+                    border-radius: 3%;
+                    cursor: pointer;
+                    margin-right: 10px;
+                }
+
+                    /* ปุ่มยืนยันสีเขียว */
+                #confirmationPopup button.submid {
+                    background-color: #28a745;
+                    color: #fff;
+                }
+
+                /* ปุ่มยกเลิกสีแดง */
+                #confirmationPopup button.cancel {
+                    background-color: #dc3545;
+                    color: #fff;
+                }
+            </style>
+
             @yield('content')
+
+
         </div>
         <!-- /.content-wrapper -->
 
